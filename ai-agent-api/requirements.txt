@@ -1,0 +1,4 @@
+crewai
+crewai-tools
+
+# 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

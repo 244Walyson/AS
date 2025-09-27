@@ -1,0 +1,93 @@
+{
+  "login": {
+    "operations": {
+      "LOGIN": "Sign In",
+      "RECOVER_PASSWORD": "Recover Password",
+      "REGISTER": "Sign Up"
+    },
+    "brand": {
+      "title": "SentimentPro",
+      "subtitle": "Intelligent Sentiment Analysis"
+    },
+    "hero": {
+      "title": "Transform social media data into",
+      "titleHighlight": "strategic insights",
+      "description": "Professional platform for real-time sentiment analysis with enterprise-grade precision."
+    },
+    "features": {
+      "accuracy": {
+        "title": "High Accuracy",
+        "description": "Validated algorithms with 98% accuracy"
+      },
+      "security": {
+        "title": "Data Security",
+        "description": "GDPR compliance and end-to-end encryption"
+      },
+      "realTime": {
+        "title": "Real-time Analysis",
+        "description": "Continuous monitoring across multiple platforms"
+      }
+    },
+    "stats": {
+      "free": "Free",
+      "freeDescription": "to get started",
+      "setup": "5 min",
+      "setupDescription": "setup time",
+      "monitoring": "24/7",
+      "monitoringDescription": "monitoring"
+    },
+    "form": {
+      "loginTitle": "Sign In",
+      "registerTitle": "Create Account",
+      "loginDescription": "Access your sentiment analysis platform",
+      "registerDescription": "Start analyzing sentiment in seconds",
+      "placeholders": {
+        "fullName": "Full name",
+        "username": "Username",
+        "email": "email",
+        "password": "Password"
+      },
+      "actions": {
+        "forgotPassword": "Forgot your password?",
+        "backToLogin": "Back to login",
+        "continueWith": "or continue with",
+        "googleWorkspace": "Google Workspace",
+        "noAccount": "Don't have an account?",
+        "createAccount": "Create account"
+      },
+      "security": {
+        "notice": "Your data is protected with bank-level encryption and stored in compliance with GDPR."
+      }
+    }
+  },
+  "dashboard": {
+    "emptyState": {
+      "title": "Nenhuma rede social conectada",
+      "description": "Para começar a monitorar sentimentos, você precisa conectar pelo menos uma rede social. Conecte seu Instagram para ver análises em tempo real.",
+      "connectButton": "Conectar",
+      "security": {
+        "title": "Seus dados estão seguros",
+        "description": "Utilizamos criptografia de ponta a ponta e nunca armazenamos suas credenciais de acesso. Você pode desconectar suas redes sociais a qualquer momento."
+      },
+      "errors": {
+        "instagram": "Error connecting Instagram. Please try again.",
+        "tiktok": "Error connecting TikTok. Please try again.",
+        "whatsapp": "Error connecting WhatsApp. Please try again.",
+        "notImplemented": "Not implemented yet."
+      },
+      "success": {
+        "instagram": "Instagram connected successfully!",
+        "tiktok": "TikTok connected successfully!",
+        "whatsapp": "WhatsApp connected successfully!"
+      },
+      "info": {
+        "redirecting": "Redirecting..."
+      }
+    },
+    "socialNetworks": {
+      "instagram": "Instagram",
+      "tiktok": "TikTok",
+      "whatsapp": "WhatsApp"
+    }
+  }
+}

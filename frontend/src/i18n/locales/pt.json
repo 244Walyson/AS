@@ -1,0 +1,93 @@
+{
+  "login": {
+    "operations": {
+      "LOGIN": "Entrar",
+      "RECOVER_PASSWORD": "Recuperar Senha",
+      "REGISTER": "Registrar-se"
+    },
+    "brand": {
+      "title": "SentimentPro",
+      "subtitle": "Análise Inteligente de Sentimentos"
+    },
+    "hero": {
+      "title": "Transforme dados de redes sociais em",
+      "titleHighlight": "insights estratégicos",
+      "description": "Plataforma profissional para análise de sentimentos em tempo real com precisão de nível empresarial."
+    },
+    "features": {
+      "accuracy": {
+        "title": "Alta Precisão",
+        "description": "Algoritmos validados com 98% de acurácia"
+      },
+      "security": {
+        "title": "Segurança de Dados",
+        "description": "Conformidade LGPD e criptografia end-to-end"
+      },
+      "realTime": {
+        "title": "Análise em Tempo Real",
+        "description": "Monitoramento contínuo de múltiplas plataformas"
+      }
+    },
+    "stats": {
+      "free": "Gratuito",
+      "freeDescription": "para começar",
+      "setup": "5 min",
+      "setupDescription": "para configurar",
+      "monitoring": "24/7",
+      "monitoringDescription": "monitoramento"
+    },
+    "form": {
+      "loginTitle": "Fazer Login",
+      "registerTitle": "Criar Conta",
+      "loginDescription": "Acesse sua plataforma de análise de sentimentos",
+      "registerDescription": "Comece a analisar sentimentos em segundos",
+      "placeholders": {
+        "fullName": "Nome completo",
+        "username": "Nome de usuário",
+        "email": "E-mail corporativo",
+        "password": "Senha"
+      },
+      "actions": {
+        "forgotPassword": "Esqueceu sua senha?",
+        "backToLogin": "← Voltar ao login",
+        "continueWith": "ou continue com",
+        "googleWorkspace": "Google Workspace",
+        "noAccount": "Não tem uma conta?",
+        "createAccount": "Criar conta empresarial"
+      },
+      "security": {
+        "notice": "Seus dados são protegidos com criptografia de nível bancário e armazenados em conformidade com a LGPD."
+      }
+    }
+  },
+  "dashboard": {
+    "emptyState": {
+      "title": "No social network connected",
+      "description": "To start monitoring sentiments, you need to connect at least one social network. Connect your Instagram to see real-time insights.",
+      "connectButton": "Connect",
+      "security": {
+        "title": "Your data is safe",
+        "description": "We use end-to-end encryption and never store your login credentials. You can disconnect your social networks at any time."
+      },
+      "errors": {
+        "instagram": "Erro ao conectar Instagram. Tente novamente.",
+        "tiktok": "Erro ao conectar TikTok. Tente novamente.",
+        "whatsapp": "Erro ao conectar WhatsApp. Tente novamente.",
+        "notImplemented": "Ainda não implementado."
+      },
+      "success": {
+        "instagram": "Instagram conectado com sucesso!",
+        "tiktok": "TikTok conectado com sucesso!",
+        "whatsapp": "WhatsApp conectado com sucesso!"
+      },
+      "info": {
+        "redirecting": "Redirecionando..."
+      }
+    },
+    "socialNetworks": {
+      "instagram": "Instagram",
+      "tiktok": "TikTok",
+      "whatsapp": "WhatsApp"
+    }
+  }
+}

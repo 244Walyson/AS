@@ -30,8 +30,8 @@ export class LocalAuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    if (provider === AuthProviderEnum.LOCAL) {
-      if (!password) {
+    if (!provider || provider === AuthProviderEnum.LOCAL) {
+      if (!password || !user.password) {
         Logger.error(`Password not provided for user ${dto.username}`);
         throw new UnauthorizedException('Invalid credentials');
       }
@@ -51,7 +51,7 @@ export class LocalAuthService {
     return new AccessTokenDto({
       access_token: accessToken,
       type: 'bearer',
-      expires_in: process.env.JWT_EXPIRATION_TIME,
+      expires_in: process.env.JWT_EXPIRATION_TIME || '3600',
       refresh_token: refreshtoken,
     });
   }

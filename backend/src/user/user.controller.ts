@@ -1,12 +1,13 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
+import { Public } from 'src/shared/decorators/public.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './services/user.service';
@@ -16,6 +17,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
+  @Public()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
@@ -41,11 +43,13 @@ export class UserController {
   }
 
   @Post('reset-password/request')
+  @Public()
   sendResetPasswordEmail(@Body() body: { username: string }) {
     return this.userService.sendResetPasswordEmail(body.username);
   }
 
   @Post('reset-password/confirm')
+  @Public()
   resetPassword(
     @Body()
     body: {

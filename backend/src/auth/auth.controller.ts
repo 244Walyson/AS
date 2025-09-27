@@ -1,11 +1,12 @@
 import { Body, Controller, Post, Res } from '@nestjs/common';
-import { LocalAuthService } from './services/local-auth.service';
-import { CredentialsDto } from './dto/credentials.dto';
-import { RefreshCredentialsDto } from './dto/refresh-credentials.dto';
 import type { Response } from 'express';
+import { Public } from 'src/shared/decorators/public.decorator';
 import { AccessTokenDto } from './dto/access-token.dto';
+import { CredentialsDto } from './dto/credentials.dto';
 import { OauthCredentialsDto } from './dto/oauth-credentials.dto';
+import { RefreshCredentialsDto } from './dto/refresh-credentials.dto';
 import { GoogleOauthService } from './services/google-oauth.service';
+import { LocalAuthService } from './services/local-auth.service';
 
 @Controller('auth')
 export class AuthController {
@@ -15,6 +16,7 @@ export class AuthController {
   ) {}
 
   @Post('token')
+  @Public()
   async getAccessToken(
     @Body() credentials: CredentialsDto,
     @Res({ passthrough: true }) res: Response,
@@ -32,6 +34,7 @@ export class AuthController {
   }
 
   @Post('token/refresh')
+  @Public()
   async refreshAccessToken(
     @Body() credentials: RefreshCredentialsDto,
     @Res({ passthrough: true }) res: Response,
@@ -50,6 +53,7 @@ export class AuthController {
   }
 
   @Post('google')
+  @Public()
   async googleAuth(
     @Body() credentials: OauthCredentialsDto,
     @Res({ passthrough: true }) res: Response,

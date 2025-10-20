@@ -6,8 +6,9 @@ from crewai import Agent, Task, Crew, LLM
 class SentimentAnalysisService:
     def __init__(self):
        self.llm = LLM(
-        model="openrouter/deepseek/deepseek-r1:free",
-        api_key="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",
+        model="gemini/gemini-2.0-flash",
+        # model="openrouter/deepseek/deepseek-r1:free",
+        api_key="AIzaSyCvkMWVT6VbRqgSeHBnLECHRbJWBVQE9yE",
         verbose=True
        )
 
@@ -38,7 +39,7 @@ class SentimentAnalysisService:
             9. Type of interaction (e.g., feedback, question, criticism).
             10. The potential social impact of the comment (low, medium, high), based on the relevance of the text.
             11. Suggestions or feedback based on the comment (if applicable).
-            
+
             IMPORTANT
             - the content must be written in {lang}
             Please provide the output in JSON format:
@@ -77,4 +78,3 @@ class SentimentAnalysisService:
         print(result)
 
         return str(result.raw)
-

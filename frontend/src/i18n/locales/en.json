@@ -88,6 +88,50 @@
       "instagram": "Instagram",
       "tiktok": "TikTok",
       "whatsapp": "WhatsApp"
+    },
+    "overview": {
+      "title": "Overview",
+      "subtitle": "Sentiment analysis of your posts",
+      "loading": "Loading dashboard...",
+      "error": "Error loading dashboard data",
+      "retry": "Try Again",
+      "stats": {
+        "totalPosts": "Total Posts",
+        "analyzedComments": "Analyzed Comments",
+        "averageSentiment": "Average Sentiment",
+        "positiveSentiments": "Positive Sentiments"
+      },
+      "charts": {
+        "sentimentDistribution": "Sentiment Distribution",
+        "topEmotions": "Most Frequent Emotions",
+        "sentimentTrend": "Sentiment Trend",
+        "topEngagedPosts": "Most Engaged Posts",
+        "recentComments": "Recent Comments"
+      },
+      "sentiments": {
+        "positive": "Positive",
+        "negative": "Negative",
+        "neutral": "Neutral"
+      },
+      "emotions": {
+        "joy": "Joy",
+        "love": "Love",
+        "excitement": "Excitement",
+        "gratitude": "Gratitude",
+        "curiosity": "Curiosity",
+        "sadness": "Sadness",
+        "anger": "Anger",
+        "fear": "Fear",
+        "surprise": "Surprise",
+        "disgust": "Disgust"
+      },
+      "posts": {
+        "comments": "comments",
+        "noContent": "Post without content"
+      },
+      "comments": {
+        "recent": "Recent Comments"
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Header from "../header/Header";
 import Sidebar from "../sidebar/Sidebar";
-import EmptyState from "./EmptyState";
+import DashboardOverview from "./DashboardOverview";
 
 const SentimentDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -18,7 +18,8 @@ const SentimentDashboard = () => {
       <div className="flex-1 flex flex-col min-h-screen">
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <main className="flex-1 flex flex-col">
-          <EmptyState />
+          <DashboardOverview />
+          {/* <EmptyState /> */}
         </main>
       </div>
       {sidebarOpen && (

@@ -1,10 +1,11 @@
+import { SocialPost } from 'src/social-media/entities/social-post.entity';
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
+  Entity,
   OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Token } from './token.entity';
 
@@ -42,6 +43,9 @@ export class User {
 
   @OneToMany(() => Token, (token) => token.user)
   tokens: Token[];
+
+  @OneToMany(() => SocialPost, (post) => post.user)
+  posts: SocialPost[];
 
   constructor(partial: Partial<User>) {
     Object.assign(this, partial);

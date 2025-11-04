@@ -36,7 +36,7 @@ export class SocialComment {
   likeCount?: number;
 
   @Column({ type: 'json', nullable: true })
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 
   @OneToMany(() => CommentSentiment, (sentiment) => sentiment.comment)
   sentiments: CommentSentiment[];

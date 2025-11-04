@@ -1,11 +1,11 @@
 "use client";
-import HomeScreen from "@/components/home/SentimentDashboard";
+import PostsScreen from "@/components/posts/PostsScreen";
 
-export default function HomePage() {
+export default function PostsPage() {
   return (
     <div className="w-full h-full flex">
       <div className="w-full h-full">
-        <HomeScreen />
+        <PostsScreen />
       </div>
     </div>
   );

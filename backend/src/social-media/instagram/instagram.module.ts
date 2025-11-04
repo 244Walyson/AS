@@ -7,9 +7,14 @@ import { SocialToken } from '../entities/social-token.entity';
 import { InstagramController } from './controllers/instagram.controller';
 import { InstagramService } from './services/instagram.service';
 import { OAuthService } from './services/oauth.service';
+import { S3Module } from 'src/s3/s3.module';
 
 @Module({
-  imports: [HttpModule, TypeOrmModule.forFeature([SocialToken, SocialPost, SocialComment])],
+  imports: [
+    HttpModule,
+    S3Module,
+    TypeOrmModule.forFeature([SocialToken, SocialPost, SocialComment]),
+  ],
   controllers: [InstagramController],
   providers: [OAuthService, InstagramService],
 })

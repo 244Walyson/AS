@@ -4,6 +4,7 @@ import { PaginationType } from 'src/@types/pagination.type';
 import { CommentSentiment } from 'src/ai-agent/entities/comment-sentiments.entity';
 import { SocialPost } from 'src/social-media/entities/social-post.entity';
 import { Repository } from 'typeorm';
+import { SentimentTrendDto } from '../dto/sentiment-trend.dto';
 
 @Injectable()
 export class SentimentsService {
@@ -200,6 +201,13 @@ export class SentimentsService {
         .groupBy('sentiment.sentiment')
         .getRawMany();
       post.sentimentsStats = sentimentsStats;
+      const topSentiment = sentimentsStats.reduce(
+        (prev, curr) => (Number(curr.count) > Number(prev.count) ? curr : prev),
+        { sentiment: null, count: 0 }
+      );
+      console.log(topSentiment)
+      post.prevailingSentiment = topSentiment;
+      console.log(post)
     }
 
     return posts;
@@ -285,5 +293,102 @@ export class SentimentsService {
       .groupBy('sentiment.impact')
       .orderBy('count', 'DESC')
       .getRawMany();
+  }
+
+  async getSentimentTrend(
+    period: 'day' | 'week' | 'month' = 'day',
+    startDate?: string,
+    endDate?: string,
+  ): Promise<SentimentTrendDto[]> {
+    const query = this.commentSentimentRepository
+      .createQueryBuilder('sentiment')
+      .select([
+        this.getDateTruncExpression(period) + ' AS date',
+        `SUM(CASE WHEN sentiment.sentiment = 'positive' THEN 1 ELSE 0 END) AS positive`,
+        `SUM(CASE WHEN sentiment.sentiment = 'neutral' THEN 1 ELSE 0 END) AS neutral`,
+        `SUM(CASE WHEN sentiment.sentiment = 'negative' THEN 1 ELSE 0 END) AS negative`,
+      ])
+      .groupBy('date')
+      .orderBy('date', 'ASC');
+
+    if (startDate)
+      query.andWhere('sentiment.created_at >= :startDate', { startDate });
+    if (endDate)
+      query.andWhere('sentiment.created_at <= :endDate', { endDate });
+
+    const result = await query.getRawMany();
+
+    return result.map((r) => ({
+      date: r.date,
+      positive: Number(r.positive),
+      neutral: Number(r.neutral),
+      negative: Number(r.negative),
+    }));
+  }
+
+  async getPostWithComments({
+    userId,
+    postId,
+  }: {
+    userId: string;
+    postId: string;
+  }) {
+    const post = await this.socialPostRepository.findOne({
+      where: { id: postId, user: { id: userId } },
+      relations: ['user'],
+    });
+
+    if (!post) {
+      return null;
+    }
+
+    // Buscar estatísticas de sentimentos do post
+    const sentimentsStats = await this.commentSentimentRepository
+      .createQueryBuilder('sentiment')
+      .select('sentiment.sentiment', 'sentiment')
+      .addSelect('COUNT(sentiment.id)', 'count')
+      .addSelect(
+        'ROUND((COUNT(sentiment.id) * 100.0 / SUM(COUNT(sentiment.id)) OVER ()), 2)',
+        'percentage',
+      )
+      .innerJoin('sentiment.comment', 'SocialComment')
+      .innerJoin('SocialComment.post', 'SocialPost')
+      .where('SocialPost.id = :postId', { postId: post.id })
+      .groupBy('sentiment.sentiment')
+      .getRawMany();
+
+    // Buscar comentários com suas análises
+    const commentsWithSentiments = await this.commentSentimentRepository
+      .createQueryBuilder('sentiment')
+      .leftJoinAndSelect('sentiment.comment', 'comment')
+      .leftJoinAndSelect('comment.post', 'post')
+      .innerJoin('post.user', 'user')
+      .where('post.id = :postId', { postId: post.id })
+      .andWhere('user.id = :userId', { userId })
+      .orderBy('sentiment.created_at', 'DESC')
+      .getMany();
+
+    // Calcular sentimento predominante
+    const prevailingSentiment = sentimentsStats.reduce((prev, current) => {
+      return Number(current.count) > Number(prev.count) ? current : prev;
+    }, sentimentsStats[0] || { sentiment: 'neutral', count: 0, percentage: 0 });
+
+    return {
+      ...post,
+      sentimentsStats,
+      prevailingSentiment,
+      commentsWithSentiments,
+    };
+  }
+
+  private getDateTruncExpression(period: 'day' | 'week' | 'month'): string {
+    switch (period) {
+      case 'week':
+        return `TO_CHAR(DATE_TRUNC('week', sentiment.created_at), 'YYYY-MM-DD')`;
+      case 'month':
+        return `TO_CHAR(DATE_TRUNC('month', sentiment.created_at), 'YYYY-MM')`;
+      default:
+        return `TO_CHAR(DATE_TRUNC('day', sentiment.created_at), 'YYYY-MM-DD')`;
+    }
   }
 }

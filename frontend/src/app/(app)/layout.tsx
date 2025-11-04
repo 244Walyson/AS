@@ -4,6 +4,7 @@ import { ABeeZee } from "@next/font/google";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import "../globals.css";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 const abeezee = ABeeZee({
   subsets: ["latin"],
@@ -28,8 +29,10 @@ export default function RootLayout({
       >
         <NextIntlClientProvider>
           <Theme>
-            <main className="h-full w-full overflow-x-hidden">{children}</main>
-            <Toaster />
+            <Sidebar>
+              <main className="overflow-x-hidden">{children}</main>
+              <Toaster />
+            </Sidebar>
           </Theme>
         </NextIntlClientProvider>
       </body>

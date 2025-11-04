@@ -44,7 +44,7 @@ const EmptyState = () => {
     try {
       const authUrl = getInstagramAuthUrl();
       console.log("Redirecting to:", authUrl);
-      ///window.open(authUrl, "_self");
+      window.open(authUrl, "_self");
       toast.loading(t("emptyState.info.redirecting"));
     } catch {
       toast.error(t("emptyState.errors.instagram"));

@@ -1,5 +1,6 @@
-import { Controller, Get, Query, Request } from '@nestjs/common';
+import { Controller, Get, Query, Request, Param } from '@nestjs/common';
 import { SentimentsService } from '../services/sentiments.service';
+import { SentimentTrendDto } from '../dto/sentiment-trend.dto';
 
 @Controller('sentiments')
 export class SentimentsController {
@@ -84,5 +85,25 @@ export class SentimentsController {
   @Get('impact/analysis')
   getImpactAnalysis(@Request() req: Request & { user: { sub: string } }) {
     return this.sentimentsService.getImpactAnalysis({ userId: req.user.sub });
+  }
+
+  @Get('sentiment-trend')
+  async getSentimentTrend(
+    @Query('period') period: 'day' | 'week' | 'month' = 'day',
+    @Query('startDate') startDate?: string,
+    @Query('endDate') endDate?: string,
+  ): Promise<SentimentTrendDto[]> {
+    return this.sentimentsService.getSentimentTrend(period, startDate, endDate);
+  }
+
+  @Get('posts/:postId')
+  async getPostWithComments(
+    @Request() req: Request & { user: { sub: string } },
+    @Param('postId') postId: string,
+  ) {
+    return this.sentimentsService.getPostWithComments({
+      userId: req.user.sub,
+      postId,
+    });
   }
 }

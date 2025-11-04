@@ -22,6 +22,9 @@ export class SocialPost {
   @Column({ name: 'media_url', type: 'text', nullable: true })
   mediaUrl?: string;
 
+  @Column({ name: 's3_media_url', type: 'text', nullable: true })
+  s3MediaUrl?: string;
+
   @Column({ type: 'text', nullable: true })
   permalink?: string;
 

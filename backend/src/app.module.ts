@@ -10,6 +10,7 @@ import { EmailModule } from './email/email.module';
 import { SocialMediaModule } from './social-media/social-media.module';
 import { UserModule } from './user/user.module';
 import { SentimentsModule } from './sentiments/sentiments.module';
+import { S3Module } from './s3/s3.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { SentimentsModule } from './sentiments/sentiments.module';
     SocialMediaModule,
     AiAgentModule,
     SentimentsModule,
+    S3Module,
   ],
   controllers: [AppController],
   providers: [AppService],

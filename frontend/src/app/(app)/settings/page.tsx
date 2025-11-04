@@ -1,11 +1,12 @@
 "use client";
-import HomeScreen from "@/components/home/SentimentDashboard";
 
-export default function HomePage() {
+import SettingsScreen from "@/components/settings/SettingsScreen";
+
+export default function SettingsPage() {
   return (
     <div className="w-full h-full flex">
       <div className="w-full h-full">
-        <HomeScreen />
+        <SettingsScreen />
       </div>
     </div>
   );

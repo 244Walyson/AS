@@ -109,3 +109,33 @@ export const getAllPosts = async (page: number = 1, size: number = 10) => {
     throw error;
   }
 };
+
+export const getSentimentTrend = async ({
+  period = "day",
+  startDate,
+  endDate,
+}: {
+  period?: "day" | "week" | "month";
+  startDate?: string;
+  endDate?: string;
+}) => {
+  try {
+    const response = await axiosInstance.get(`/sentiments/sentiment-trend`, {
+      params: { period: period, startDate, endDate },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const getPostWithComments = async (postId: string) => {
+  try {
+    const response = await axiosInstance.get(`/sentiments/posts/${postId}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

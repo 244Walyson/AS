@@ -5,9 +5,16 @@ import { Input } from "../ui/input";
 interface HeaderProps {
   sidebarOpen: boolean;
   setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  title: string;
+  subtitle: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
+const Header: React.FC<HeaderProps> = ({
+  sidebarOpen,
+  setSidebarOpen,
+  title,
+  subtitle,
+}) => {
   return (
     <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
       <div className="flex items-center justify-between p-4">
@@ -23,10 +30,10 @@ const Header: React.FC<HeaderProps> = ({ sidebarOpen, setSidebarOpen }) => {
 
           <div>
             <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-              Dashboard
+              {title}
             </h1>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Bem-vindo de volta! Conecte suas redes sociais para começar.
+              {subtitle}
             </p>
           </div>
         </div>
